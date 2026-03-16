@@ -1,0 +1,38 @@
+export const linkedinPosts = [
+    {
+        id: 1,
+        title: "What 9 months in agri-ESG taught me about India",
+        excerpt: "FarMart wasn't just an internship. It was my first real look at how broken and beautiful India's agri supply chain is at the same time. Here's what I learned...",
+        date: "September 2025",
+        readTime: "4 min read",
+        tags: ["ESG", "Agri", "FarMart"],
+        url: "https://linkedin.com/in/mradul-awasthi",
+    },
+    {
+        id: 2,
+        title: "Mapping the Toy Market — Lessons from the Founder's Office",
+        excerpt: "70% of India's toy market is dominated by Chinese imports. I spent 2 months with an Ex-Goldman Sachs founder figuring out which categories could actually be won back...",
+        date: "August 2024",
+        readTime: "5 min read",
+        tags: ["Consumer Research", "GTM", "Toys"],
+        url: "https://linkedin.com/in/mradul-awasthi",
+    },
+    {
+        id: 3,
+        title: "Why I think every B-school student should do primary research",
+        excerpt: "I've interviewed 50+ farmers, traders, and NGO workers. No classroom prepared me for what I found. The data never tells the full story — the people do...",
+        date: "October 2024",
+        readTime: "3 min read",
+        tags: ["Research", "Learning", "Strategy"],
+        url: "https://linkedin.com/in/mradul-awasthi",
+    },
+    {
+        id: 4,
+        title: "The makhana supply chain is more complex than you think",
+        excerpt: "Bihar produces 85-90% of the world's makhana. Yet most of the value is captured elsewhere. Here's what I found after analysing the full value chain...",
+        date: "December 2024",
+        readTime: "6 min read",
+        tags: ["Supply Chain", "Strategy", "Agri"],
+        url: "https://linkedin.com/in/mradul-awasthi",
+    },
+];

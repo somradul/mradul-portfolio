@@ -1,6 +1,7 @@
 import Hero from "@/components/Hero";
 import Ticker from "@/components/Ticker";
 import ExperienceSection from "@/components/ExperienceSection";
+import WritingSection from "@/components/WritingSection";
 
 export default function Home() {
   return (
@@ -8,6 +9,7 @@ export default function Home() {
       <Hero />
       <Ticker />
       <ExperienceSection />
+      <WritingSection />
     </>
   );
 }
