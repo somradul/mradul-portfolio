@@ -1,0 +1,84 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap');
+
+:root {
+  --background: #FAFAF8;
+  --charcoal: #1A1A2E;
+  --coral: #FF6B4A;
+  --teal: #0A7E8C;
+  --gold: #C9A84C;
+  --gold-light: #E2C97A;
+  --surface: #F0EDE8;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--charcoal);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--coral);
+  border-radius: 2px;
+}
+
+/* Selection color */
+::selection {
+  background: var(--coral);
+  color: white;
+}
+
+/* Gold highlight utility */
+.gold-text {
+  color: var(--gold);
+}
+
+.coral-text {
+  color: var(--coral);
+}
+
+.teal-text {
+  color: var(--teal);
+}
+
+/* Section spacing utility */
+.section-padding {
+  padding: 5rem 2rem;
+}
+
+@media (min-width: 768px) {
+  .section-padding {
+    padding: 7rem 4rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .section-padding {
+    padding: 8rem 8rem;
+  }
+}
