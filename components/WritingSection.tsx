@@ -30,7 +30,7 @@ export default function WritingSection() {
                         </h2>
                     </div>
                     <a
-                        href="https://linkedin.com/in/mradul-awasthi"
+                        href="https://www.linkedin.com/in/mradul-awasthi/"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="font-mono text-xs tracking-widest uppercase text-charcoal/50 hover:text-coral transition-colors flex items-center gap-2 shrink-0"

@@ -31,7 +31,7 @@ export default function Footer() {
                 {/* Right */}
                 <div className="flex items-center gap-4">
                     <a
-                        href="https://linkedin.com/in/mradul-awasthi"
+                        href="https://www.linkedin.com/in/mradul-awasthi/"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="font-mono text-xs tracking-widest uppercase hover:text-coral transition-colors"

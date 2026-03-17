@@ -17,7 +17,7 @@ export const experiences = [
         ],
         tags: ["ESG", "Agri Value Chain", "CSR", "Supply Chain", "Primary Research"],
         proofLabel: "View LinkedIn Post →",
-        proofUrl: "https://linkedin.com/in/mradul-awasthi",
+        proofUrl: "https://www.linkedin.com/in/mradul-awasthi/",
     },
     {
         id: 2,
@@ -34,7 +34,7 @@ export const experiences = [
         ],
         tags: ["Strategy", "Value Chain", "Makhana", "Agri Economics", "IRR"],
         proofLabel: "View LinkedIn Post →",
-        proofUrl: "https://linkedin.com/in/mradul-awasthi",
+        proofUrl: "https://www.linkedin.com/in/mradul-awasthi/",
     },
     {
         id: 3,
@@ -51,7 +51,7 @@ export const experiences = [
         ],
         tags: ["Export Research", "Cross-border E-commerce", "Market Analysis", "Pricing"],
         proofLabel: "View LinkedIn Post →",
-        proofUrl: "https://linkedin.com/in/mradul-awasthi",
+        proofUrl: "https://www.linkedin.com/in/mradul-awasthi/",
     },
     {
         id: 4,
@@ -69,6 +69,6 @@ export const experiences = [
         ],
         tags: ["GTM", "Market Sizing", "Consumer Research", "Founder's Office"],
         proofLabel: "View LinkedIn Post →",
-        proofUrl: "https://linkedin.com/in/mradul-awasthi",
+        proofUrl: "https://www.linkedin.com/in/mradul-awasthi/",
     },
 ];

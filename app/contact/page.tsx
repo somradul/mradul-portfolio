@@ -188,7 +188,7 @@ export default function ContactPage() {
                                     icon: <Linkedin size={18} />,
                                     label: "LinkedIn",
                                     value: "linkedin.com/in/mradul-awasthi",
-                                    href: "https://linkedin.com/in/mradul-awasthi",
+                                    href: "https://www.linkedin.com/in/mradul-awasthi/",
                                 },
                                 {
                                     icon: <MapPin size={18} />,

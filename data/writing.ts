@@ -6,7 +6,7 @@ export const linkedinPosts = [
         date: "September 2025",
         readTime: "4 min read",
         tags: ["ESG", "Agri", "FarMart"],
-        url: "https://linkedin.com/in/mradul-awasthi",
+        url: "https://www.linkedin.com/in/mradul-awasthi/",
     },
     {
         id: 2,
@@ -15,7 +15,7 @@ export const linkedinPosts = [
         date: "August 2024",
         readTime: "5 min read",
         tags: ["Consumer Research", "GTM", "Toys"],
-        url: "https://linkedin.com/in/mradul-awasthi",
+        url: "https://www.linkedin.com/in/mradul-awasthi/",
     },
     {
         id: 3,
@@ -24,7 +24,7 @@ export const linkedinPosts = [
         date: "October 2024",
         readTime: "3 min read",
         tags: ["Research", "Learning", "Strategy"],
-        url: "https://linkedin.com/in/mradul-awasthi",
+        url: "https://www.linkedin.com/in/mradul-awasthi/",
     },
     {
         id: 4,
@@ -33,6 +33,6 @@ export const linkedinPosts = [
         date: "December 2024",
         readTime: "6 min read",
         tags: ["Supply Chain", "Strategy", "Agri"],
-        url: "https://linkedin.com/in/mradul-awasthi",
+        url: "https://www.linkedin.com/in/mradul-awasthi/",
     },
 ];

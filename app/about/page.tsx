@@ -135,12 +135,13 @@ export default function AboutPage() {
               {...fadeUp(0.35)}
               className="flex flex-col gap-4"
             >
-              {/* Profile photo placeholder */}
-              <div className="aspect-square bg-surface border-2 border-dashed border-charcoal/15 flex flex-col items-center justify-center gap-3">
-                <span className="text-4xl">👤</span>
-                <p className="font-mono text-xs tracking-widest uppercase text-charcoal/30 text-center px-4">
-                  Profile photo<br />coming soon
-                </p>
+              {/* Profile photo */}
+              <div className="aspect-square overflow-hidden border border-surface">
+                <img
+                  src="/profile.jpg"
+                  alt="Mradul Awasthi"
+                  className="w-full h-full object-cover object-top"
+                />
               </div>
 
               {/* Quick facts */}
