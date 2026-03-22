@@ -112,10 +112,7 @@ export default function Hero() {
             transition={{ duration: 0.7, delay: 0.4 }}
             className="text-charcoal/60 text-lg md:text-xl font-light max-w-xl leading-relaxed mb-6"
           >
-            I don&apos;t just read markets — I map them, question them, and build strategies around them.{" "}
-            <span className="text-charcoal font-medium">
-              A generalist by design, a strategist by instinct.
-            </span>
+            I enjoy figuring things out - whether it&apos;s a market, a business problem, or a system and turning that understanding into something useful.
           </motion.p>
 
           {/* Quote */}
@@ -167,7 +164,7 @@ export default function Hero() {
             transition={{ duration: 0.7, delay: 0.85 }}
             className="flex flex-wrap gap-2"
           >
-            {["FarMart Fellow", "ExportDuniya", "Reliance Scholar", "President, Lawrence", "Impact & ESG Fellow", "Shri Ram Winner"].map((chip) => (
+            {["Indian Toy Market", "Makhana Value Chain", "Agri Supply Chain", "Cross-border E-commerce", "Gig Economy", "Renewable Energy"].map((chip) => (
               <span key={chip} className="font-mono text-xs tracking-wide text-teal bg-teal/10 border border-teal/20 px-3 py-1">
                 {chip}
               </span>
