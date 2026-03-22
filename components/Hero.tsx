@@ -78,7 +78,7 @@ export default function Hero() {
       ))}
 
       {/* Main Content */}
-      <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 pt-24 pb-16">
+      <div className="relative z-20 max-w-7xl mx-auto px-6 md:px-12 pt-24 pb-16">
         <div className="max-w-3xl">
 
           {/* Badge */}
