@@ -33,10 +33,9 @@ export default function ProjectsPage() {
               className="font-playfair font-black text-charcoal leading-tight mb-4"
               style={{ fontSize: "clamp(2.5rem, 6vw, 5rem)" }}
             >
-              Work I&apos;m proud of.<br />
-              <span className="text-coral italic">Thinking made visible.</span>
+              Work I&apos;m proud of.
             </h1>
-            <p className="text-charcoal/50 text-lg max-w-xl font-light leading-relaxed">
+            <p className="text-charcoal/50 text-lg font-light leading-relaxed whitespace-nowrap">
               Academic and research projects that pushed my thinking beyond the classroom.
             </p>
           </motion.div>
@@ -74,12 +73,15 @@ export default function ProjectsPage() {
                   <h3 className="font-playfair font-bold text-2xl text-charcoal mb-1">
                     {project.title}
                   </h3>
-                  <p
-                    className="font-mono text-xs tracking-wider mb-1"
+                  <a
+                    href={project.supervisorUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-mono text-xs tracking-wider mb-1 hover:underline cursor-pointer block"
                     style={{ color: project.color }}
                   >
                     {project.supervisor}
-                  </p>
+                  </a>
                   <p className="font-mono text-xs text-charcoal/30 tracking-wider mb-5">
                     {project.institution}
                   </p>
@@ -129,29 +131,29 @@ export default function ProjectsPage() {
             <div className="flex flex-col gap-5">
               {[
                 {
-                  org: "Lawrence — The Law Forum",
+                  org: "Lawrence - The Law Forum, SSCBS",
                   role: "President",
                   period: "June 2025 – Present",
                   color: "#FF6B4A",
                   bullets: [
                     "Selected as <strong>President 1 out of 24</strong> candidates",
-                    "Invited Ex-Director General of Police of Uttar Pradesh as keynote",
+                    "Invited <strong>Ex-Director General of Police of Uttar Pradesh</strong> as keynote speaker",
                     "Published <strong>4+ case studies</strong> · Managed <strong>₹50K+ budget</strong>",
                     "Initiated <strong>10+ law-focused sessions</strong> on startups, corporate, POSH, and human rights",
-                    "Negotiated tie-ups for <strong>2 flagship events</strong> with 45+ colleges across DU and NLUs",
+                    "Negotiated tie-ups for <strong>2 flagship events</strong> with <strong>45+ colleges</strong> across DU and NLUs",
                   ],
                 },
                 {
-                  org: "Crescendo — Annual Cultural Fest",
+                  org: "Crescendo - The Annual Cultural Fest, SSCBS",
                   role: "Organizing Team · Artist Management",
                   period: "January – May 2024",
                   color: "#0A7E8C",
                   bullets: [
-                    "Selected in Artist Team <strong>3 out of 30</strong> candidates",
-                    "Raised <strong>₹14L+ in sponsorships</strong> · Total footfall <strong>10,000+</strong>",
-                    "Generated <strong>2M+ social media impressions</strong>",
-                    "Invited Papon, Kr$na, ScoopWhoop, and Vivek Samtani",
-                    "Managed <strong>₹24 lakh budget</strong> across 12+ brand collaborations including T-Series and ManKind",
+                    "Selected in Artist Team - <strong>3 out of 30</strong> candidates",
+                    "The team collectively raised <strong>₹14L+ in sponsorships</strong> and drove a total footfall of <strong>10,000+</strong>",
+                    "Contributed to generating <strong>2M+ social media impressions</strong> across platforms",
+                    "As part of artist management, Invited and coordinated with Papon, Kr$na, ScoopWhoop, and Vivek Samtani",
+                    "Helped manage a <strong>₹24 lakh budget</strong> across <strong>12+ brand collaborations</strong> including T-Series and ManKind",
                   ],
                 },
               ].map((item, i) => (
@@ -222,22 +224,22 @@ export default function ProjectsPage() {
               {[
                 {
                   year: "2025",
-                  title: "National Winner — Shri Ram Crisis Mania",
+                  title: "National Winner - Shri Ram Crisis Mania",
                   desc: "Out of 470+ participants · Shri Ram College of Commerce",
                 },
                 {
-                  year: "2023–26",
+                  year: "2023",
                   title: "Reliance Foundation Undergraduate Scholar",
                   desc: "Selected out of 60,000+ applicants · Reliance Industries Limited",
                 },
                 {
                   year: "2022",
-                  title: "School Rank 3 · Class XII",
+                  title: "School Rank 3 - Class XII",
                   desc: "Out of 200+ students · Guru Teg Bahadur Educational Academy",
                 },
                 {
                   year: "2020",
-                  title: "School Rank 1 · Class X",
+                  title: "School Rank 1 - Class X",
                   desc: "Out of 200+ students · Guru Teg Bahadur Educational Academy",
                 },
               ].map((award, i) => (
