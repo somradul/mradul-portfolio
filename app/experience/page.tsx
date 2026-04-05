@@ -37,8 +37,9 @@ export default function ExperiencePage() {
               Internships that felt<br />
               <span className="text-coral italic">nothing like internships.</span>
             </h1>
-            <p className="text-charcoal/50 text-lg max-w-xl font-light leading-relaxed">
-              4 internships across agri value chains, cross-border e-commerce, ESG, and consumer markets. Each one taught me something no classroom could.
+            <p className="text-charcoal/50 text-lg font-light leading-relaxed">
+              4 internships across agri value chains, cross-border e-commerce, ESG, and consumer markets.<br />
+              Each one taught me something no classroom could.
             </p>
           </motion.div>
 
@@ -51,8 +52,7 @@ export default function ExperiencePage() {
           >
             {[
               { number: "4", label: "Internships" },
-              { number: "14+", label: "Months of Experience" },
-              { number: "10K+", label: "Farmers Reached" },
+              { number: "1", label: "Fellowship" },
               { number: "5+", label: "Industries Covered" },
             ].map((stat) => (
               <div key={stat.label}>
@@ -103,32 +103,35 @@ export default function ExperiencePage() {
                     <div className="relative z-10">
                       {/* Header */}
                       <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-3 mb-2">
-                        <div>
-                          <div className="flex items-center gap-3">
-                            {/* Logo placeholder */}
-                            <div
-                              className="w-8 h-8 flex items-center justify-center text-white font-bold text-xs font-mono"
-                              style={{ background: exp.color }}
-                            >
-                              {exp.company[0]}
-                            </div>
-                            <h3 className="font-playfair font-bold text-2xl text-charcoal">
-                              {exp.company}
-                            </h3>
-                            {exp.website !== "#" && (
-                              <a
-                                href={exp.website}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="text-charcoal/30 hover:text-coral transition-colors"
-                              >
-                                <ExternalLink size={15} />
-                              </a>
-                            )}
+                        <div className="flex items-stretch gap-4">
+                          {/* Logo placeholder */}
+                          <div
+                            className="w-12 flex items-center justify-center text-white font-bold text-xl font-mono shrink-0"
+                            style={{ background: exp.color }}
+                          >
+                            {exp.company[0]}
                           </div>
-                          <p className="font-mono text-xs tracking-wider text-coral mt-1 ml-11">
-                            {exp.role}
-                          </p>
+                          
+                          <div className="flex flex-col justify-center py-0.5">
+                            <div className="flex items-center gap-3 mb-1">
+                              <h3 className="font-playfair font-bold text-2xl text-charcoal leading-none">
+                                {exp.company}
+                              </h3>
+                              {exp.website !== "#" && (
+                                <a
+                                  href={exp.website}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="text-charcoal/30 hover:text-coral transition-colors"
+                                >
+                                  <ExternalLink size={15} />
+                                </a>
+                              )}
+                            </div>
+                            <p className="font-mono text-xs tracking-wider text-coral">
+                              {exp.role}
+                            </p>
+                          </div>
                         </div>
                         <span className="font-mono text-xs tracking-widest text-charcoal/40 whitespace-nowrap pt-1">
                           {exp.period}
@@ -136,7 +139,7 @@ export default function ExperiencePage() {
                       </div>
 
                       {/* Context */}
-                      <p className="text-charcoal/45 text-sm italic mb-5 ml-11 font-light">
+                      <p className="text-charcoal/45 text-sm italic mb-5 font-light">
                         {exp.context}
                       </p>
 
@@ -162,15 +165,7 @@ export default function ExperiencePage() {
                             </span>
                           ))}
                         </div>
-                        <a
-                          href={exp.proofUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="flex items-center gap-1.5 font-mono text-xs tracking-widest uppercase text-coral hover:gap-3 transition-all shrink-0 group/link"
-                        >
-                          {exp.proofLabel}
-                          <ArrowUpRight size={14} className="group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-transform" />
-                        </a>
+
                       </div>
                     </div>
                   </motion.div>

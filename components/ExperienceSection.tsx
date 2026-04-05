@@ -106,16 +106,7 @@ export default function ExperienceSection() {
                                         ))}
                                     </div>
 
-                                    {/* Proof Link */}
-                                    <a
-                                        href={exp.proofUrl}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="flex items-center gap-1.5 font-mono text-xs tracking-widest uppercase text-coral hover:gap-2.5 transition-all group/link shrink-0"
-                                    >
-                                        {exp.proofLabel}
-                                        <ArrowUpRight size={14} className="group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-transform" />
-                                    </a>
+
                                 </div>
 
                             </div>
