@@ -2,7 +2,8 @@
 
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
-import { linkedinPosts } from "@/data/writing";
+import EmbedCard from "@/components/EmbedCard";
+import { writingMedia } from "@/data/writing";
 
 export default function WritingSection() {
     return (
@@ -30,82 +31,27 @@ export default function WritingSection() {
                         </h2>
                     </div>
                     <a
-                        href="https://www.linkedin.com/in/mradul-awasthi/"
-                        target="_blank"
-                        rel="noopener noreferrer"
+                        href="/writing"
                         className="font-mono text-xs tracking-widest uppercase text-charcoal/50 hover:text-coral transition-colors flex items-center gap-2 shrink-0"
                     >
-                        See all on LinkedIn
+                        See all insights
                         <ArrowUpRight size={14} />
                     </a>
                 </motion.div>
 
                 {/* Cards Grid — Mosaic Style */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    {linkedinPosts.map((post, i) => (
-                        <motion.a
+                <div className="flex flex-wrap gap-8 justify-center items-start">
+                    {writingMedia.slice(0, 2).map((post, i) => (
+                        <motion.div
                             key={post.id}
-                            href={post.url}
-                            target="_blank"
-                            rel="noopener noreferrer"
                             initial={{ opacity: 0, y: 32 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.5, delay: i * 0.1 }}
-                            whileHover={{ y: -4 }}
-                            className="group bg-white border border-charcoal/6 p-7 flex flex-col gap-4 cursor-pointer relative overflow-hidden"
+                            className="shrink-0"
                         >
-                            {/* LinkedIn Badge */}
-                            <div className="flex items-center justify-between">
-                                <div className="flex items-center gap-2">
-                                    {/* LinkedIn Logo */}
-                                    <div className="w-7 h-7 bg-[#0A66C2] flex items-center justify-center">
-                                        <span className="text-white font-bold text-xs">in</span>
-                                    </div>
-                                    <span className="font-mono text-xs tracking-wider text-charcoal/40">
-                                        LinkedIn Post
-                                    </span>
-                                </div>
-                                <span className="font-mono text-xs text-charcoal/30">
-                                    {post.date}
-                                </span>
-                            </div>
-
-                            {/* Title */}
-                            <h3 className="font-playfair font-bold text-xl text-charcoal leading-snug group-hover:text-coral transition-colors">
-                                {post.title}
-                            </h3>
-
-                            {/* Excerpt */}
-                            <p className="text-charcoal/55 text-sm leading-relaxed font-light flex-1">
-                                {post.excerpt}
-                            </p>
-
-                            {/* Footer */}
-                            <div className="flex items-center justify-between pt-2 border-t border-charcoal/6">
-                                <div className="flex gap-2 flex-wrap">
-                                    {post.tags.map((tag) => (
-                                        <span
-                                            key={tag}
-                                            className="font-mono text-xs text-coral/70 bg-coral/6 px-2 py-0.5"
-                                        >
-                                            {tag}
-                                        </span>
-                                    ))}
-                                </div>
-                                <div className="flex items-center gap-1.5 font-mono text-xs text-charcoal/30 group-hover:text-coral transition-colors">
-                                    <span>{post.readTime}</span>
-                                    <ArrowUpRight
-                                        size={13}
-                                        className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"
-                                    />
-                                </div>
-                            </div>
-
-                            {/* Hover bottom line */}
-                            <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-coral scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
-
-                        </motion.a>
+                            <EmbedCard url={post.url} type={post.type as "linkedin" | "instagram"} />
+                        </motion.div>
                     ))}
                 </div>
 
