@@ -1,38 +1,33 @@
-export const linkedinPosts = [
+// export this array so the page can map over the links
+export const writingMedia = [
     {
         id: 1,
-        title: "What 9 months in agri-ESG taught me about India",
-        excerpt: "FarMart wasn't just an internship. It was my first real look at how broken and beautiful India's agri supply chain is at the same time. Here's what I learned...",
-        date: "September 2025",
-        readTime: "4 min read",
-        tags: ["ESG", "Agri", "FarMart"],
-        url: "https://www.linkedin.com/in/mradul-awasthi/",
+        type: "linkedin",
+        url: "https://www.linkedin.com/posts/mradul-awasthi_im-a-firm-bjp-supporter-and-i-can-debate-activity-7393240947435868160-i195?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEWcrS8BsG7yTI7eMYcKXpnvYlIt9mB7d4s"
     },
     {
         id: 2,
-        title: "Mapping the Toy Market — Lessons from the Founder's Office",
-        excerpt: "70% of India's toy market is dominated by Chinese imports. I spent 2 months with an Ex-Goldman Sachs founder figuring out which categories could actually be won back...",
-        date: "August 2024",
-        readTime: "5 min read",
-        tags: ["Consumer Research", "GTM", "Toys"],
-        url: "https://www.linkedin.com/in/mradul-awasthi/",
+        type: "linkedin",
+        url: "https://www.linkedin.com/posts/mradul-awasthi_bhai-tu-pagal-hai-kya-teri-attendance-activity-7341430478664585219-_u7r?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEWcrS8BsG7yTI7eMYcKXpnvYlIt9mB7d4s"
     },
     {
-        id: 3,
-        title: "Why I think every B-school student should do primary research",
-        excerpt: "I've interviewed 50+ farmers, traders, and NGO workers. No classroom prepared me for what I found. The data never tells the full story — the people do...",
-        date: "October 2024",
-        readTime: "3 min read",
-        tags: ["Research", "Learning", "Strategy"],
-        url: "https://www.linkedin.com/in/mradul-awasthi/",
+        id: 7,
+        type: "linkedin",
+        url: "https://www.linkedin.com/posts/mradul-awasthi_onefarmart-internships-coldemailing-activity-7289262051930034176-uO6b?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEWcrS8BsG7yTI7eMYcKXpnvYlIt9mB7d4s"
     },
     {
-        id: 4,
-        title: "The makhana supply chain is more complex than you think",
-        excerpt: "Bihar produces 85-90% of the world's makhana. Yet most of the value is captured elsewhere. Here's what I found after analysing the full value chain...",
-        date: "December 2024",
-        readTime: "6 min read",
-        tags: ["Supply Chain", "Strategy", "Agri"],
-        url: "https://www.linkedin.com/in/mradul-awasthi/",
+        id: 8,
+        type: "linkedin",
+        url: "https://www.linkedin.com/posts/mradul-awasthi_there-is-no-point-of-cold-mailing-in-2025-activity-7282749887148867585-TmgT?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEWcrS8BsG7yTI7eMYcKXpnvYlIt9mB7d4s"
     },
+    {
+        id: 9,
+        type: "linkedin",
+        url: "https://www.linkedin.com/posts/mradul-awasthi_careertips-industryinsights-mentorship-activity-7189610847697014786-cZ7S?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEWcrS8BsG7yTI7eMYcKXpnvYlIt9mB7d4s"
+    },
+    {
+        id: 10,
+        type: "linkedin",
+        url: "https://www.linkedin.com/posts/mradul-awasthi_consistency-is-the-key-to-collection-activity-7148643308506865665-C5rq?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEWcrS8BsG7yTI7eMYcKXpnvYlIt9mB7d4s"
+    }
 ];

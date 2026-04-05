@@ -1,7 +1,89 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { projects } from "@/data/projects";
+
+function LeadershipCard({ item, index }: { item: any; index: number }) {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, x: -24 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5, delay: index * 0.1 }}
+      onHoverStart={() => setIsOpen(true)}
+      onHoverEnd={() => setIsOpen(false)}
+      onClick={() => setIsOpen(!isOpen)}
+      className="bg-white border border-surface p-8 relative overflow-hidden group cursor-pointer"
+      style={{ borderLeft: `4px solid ${item.color}` }}
+    >
+      <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-2 mb-4">
+        <div>
+          <h3 className="font-playfair font-bold text-xl text-charcoal group-hover:text-coral transition-colors">
+            {item.org}
+          </h3>
+          <p
+            className="font-mono text-xs tracking-wider mt-1"
+            style={{ color: item.color }}
+          >
+            {item.role}
+          </p>
+        </div>
+        <span className="font-mono text-xs tracking-widest text-charcoal/40 whitespace-nowrap">
+          {item.period}
+        </span>
+      </div>
+      <ul className="flex flex-col gap-2">
+        {item.bullets.map((bullet: string, j: number) => (
+          <li key={j} className="flex gap-3 text-sm text-charcoal/70 leading-relaxed">
+            <span
+              className="mt-1.5 shrink-0 text-xs"
+              style={{ color: item.color }}
+            >
+              ▸
+            </span>
+            <span dangerouslySetInnerHTML={{ __html: bullet }} />
+          </li>
+        ))}
+      </ul>
+
+      {item.media && item.media.length > 0 && (
+        <div className="mt-6 pt-4 border-t border-surface/50">
+          <div className="flex items-center gap-2 font-mono text-xs tracking-wider uppercase text-charcoal/50 group-hover:text-coral transition-colors">
+            <span className="relative">
+              {isOpen ? "Hide Media" : "View Media"}
+              <span className="absolute -bottom-1 left-0 w-full h-[1px] bg-coral/0 group-hover:bg-coral/50 transition-colors" />
+            </span>
+            <motion.span animate={{ rotate: isOpen ? 180 : 0 }} transition={{ duration: 0.3 }}>
+              ↓
+            </motion.span>
+          </div>
+
+          <AnimatePresence>
+            {isOpen && (
+              <motion.div
+                initial={{ height: 0, opacity: 0, marginTop: 0 }}
+                animate={{ height: "auto", opacity: 1, marginTop: 24 }}
+                exit={{ height: 0, opacity: 0, marginTop: 0 }}
+                className="overflow-hidden"
+              >
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4" onClick={(e) => e.stopPropagation()}>
+                  {item.media.map((src: string, idx: number) => (
+                    <div key={idx} className="aspect-square bg-white border border-surface flex flex-col justify-center overflow-hidden">
+                      <img src={src} alt={`${item.org} media ${idx + 1}`} className="w-full h-full object-cover object-center" />
+                    </div>
+                  ))}
+                </div>
+              </motion.div>
+            )}
+           </AnimatePresence>
+        </div>
+      )}
+    </motion.div>
+  );
+}
 
 export default function ProjectsPage() {
   return (
@@ -142,6 +224,11 @@ export default function ProjectsPage() {
                     "Initiated <strong>10+ law-focused sessions</strong> on startups, corporate, POSH, and human rights",
                     "Negotiated tie-ups for <strong>2 flagship events</strong> with <strong>45+ colleges</strong> across DU and NLUs",
                   ],
+                  media: [
+                    "/lawrence 1.jpg",
+                    "/lawrence 2.jpg",
+                    "/lawrence 3.JPG"
+                  ]
                 },
                 {
                   org: "Crescendo - The Annual Cultural Fest, SSCBS",
@@ -157,46 +244,7 @@ export default function ProjectsPage() {
                   ],
                 },
               ].map((item, i) => (
-                <motion.div
-                  key={item.org}
-                  initial={{ opacity: 0, x: -24 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: i * 0.1 }}
-                  whileHover={{ x: 4 }}
-                  className="bg-white border border-surface p-8 relative overflow-hidden group"
-                  style={{ borderLeft: `4px solid ${item.color}` }}
-                >
-                  <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-2 mb-4">
-                    <div>
-                      <h3 className="font-playfair font-bold text-xl text-charcoal">
-                        {item.org}
-                      </h3>
-                      <p
-                        className="font-mono text-xs tracking-wider mt-1"
-                        style={{ color: item.color }}
-                      >
-                        {item.role}
-                      </p>
-                    </div>
-                    <span className="font-mono text-xs tracking-widest text-charcoal/40 whitespace-nowrap">
-                      {item.period}
-                    </span>
-                  </div>
-                  <ul className="flex flex-col gap-2">
-                    {item.bullets.map((bullet, j) => (
-                      <li key={j} className="flex gap-3 text-sm text-charcoal/70 leading-relaxed">
-                        <span
-                          className="mt-1.5 shrink-0 text-xs"
-                          style={{ color: item.color }}
-                        >
-                          ▸
-                        </span>
-                        <span dangerouslySetInnerHTML={{ __html: bullet }} />
-                      </li>
-                    ))}
-                  </ul>
-                </motion.div>
+                <LeadershipCard key={item.org} item={item} index={i} />
               ))}
             </div>
           </motion.div>

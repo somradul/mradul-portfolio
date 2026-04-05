@@ -1,41 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowUpRight } from "lucide-react";
-import { linkedinPosts } from "@/data/writing";
-
-const blogPosts = [
-  {
-    id: 1,
-    title: "What I Learned Mapping India's Makhana Supply Chain",
-    excerpt:
-      "Bihar produces 85-90% of the world's makhana. Yet most of the value is captured elsewhere. Here's what I found after spending weeks analysing the full value chain — from farm to shelf.",
-    date: "December 2024",
-    readTime: "6 min read",
-    tags: ["Supply Chain", "Strategy", "Agri"],
-    slug: "makhana-supply-chain",
-  },
-  {
-    id: 2,
-    title: "Why Consumer Market Research Starts With the Wrong Question",
-    excerpt:
-      "Most market research asks 'what do consumers want?' But that's the wrong starting point. After mapping the Indian toy market and interviewing 50+ consumers, here's what I think researchers should ask instead.",
-    date: "October 2024",
-    readTime: "4 min read",
-    tags: ["Consumer Research", "GTM", "Strategy"],
-    slug: "consumer-research-wrong-question",
-  },
-  {
-    id: 3,
-    title: "The Generalist's Advantage in a World of Specialists",
-    excerpt:
-      "Everyone says 'pick a lane.' I've spent my college years deliberately not doing that — moving from agri-ESG to cross-border exports to consumer markets. Here's why I think that was the right call.",
-    date: "January 2025",
-    readTime: "5 min read",
-    tags: ["Career", "Strategy", "Learning"],
-    slug: "generalist-advantage",
-  },
-];
+import EmbedCard from "@/components/EmbedCard";
+import { writingMedia } from "@/data/writing";
 
 export default function WritingPage() {
   return (
@@ -71,16 +38,69 @@ export default function WritingPage() {
               <span className="text-coral italic">Written down.</span>
             </h1>
             <p className="text-charcoal/50 text-lg max-w-xl font-light leading-relaxed">
-              Strategy, markets, and ideas worth writing down. A mix of long-form articles and LinkedIn posts.
+              Strategy, markets, and ideas worth writing down.
             </p>
           </motion.div>
         </div>
       </section>
-
-      {/* Blog Articles */}
+      
+      {/* Bento Box Analytics Dashboard */}
       <section className="py-12 px-6 md:px-12 lg:px-24">
         <div className="max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-8">
+            
+            {/* Main Stat Card - Spans 2 cols on desktop */}
+            <motion.div 
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="md:col-span-2 bg-charcoal text-white p-8 md:p-12 relative overflow-hidden flex flex-col justify-end min-h-[280px]"
+            >
+              <div className="absolute top-0 right-0 w-64 h-64 bg-coral/20 blur-[100px] rounded-full translate-x-1/2 -translate-y-1/2 pointer-events-none" />
+              <div className="relative z-10">
+                <span className="font-mono text-xs tracking-[0.2em] uppercase text-white/50 mb-6 block">
+                  13 Month LinkedIn Impact
+                </span>
+                <div className="flex flex-col md:flex-row md:items-baseline gap-2 md:gap-6 mb-3">
+                  <h3 className="font-playfair font-black text-6xl md:text-7xl">289K+</h3>
+                  <span className="font-mono text-sm tracking-widest uppercase text-coral">Total Impressions</span>
+                </div>
+                <div className="flex flex-col md:flex-row md:items-baseline gap-2 md:gap-6">
+                  <h3 className="font-playfair font-black text-4xl md:text-5xl text-white/80">109K+</h3>
+                  <span className="font-mono text-sm tracking-widest uppercase text-white/40">Members Reached</span>
+                </div>
+              </div>
+            </motion.div>
 
+            {/* Sub Card 1: Top Post Highlight */}
+            <motion.div 
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
+              className="bg-white border border-surface p-8 flex flex-col min-h-[280px] group"
+            >
+              <span className="font-mono text-xs tracking-widest uppercase text-charcoal/40 mb-auto">
+                Viral Highlight
+              </span>
+              <div className="mt-8">
+                <h4 className="font-playfair font-black text-4xl text-charcoal mb-2 group-hover:text-coral transition-colors">120,279</h4>
+                <p className="text-charcoal/60 text-sm font-light leading-relaxed mb-6">
+                  Peak impressions on a single post highlighting political debates and systemic insights.
+                </p>
+                <div className="h-1 w-12 bg-coral" />
+              </div>
+            </motion.div>
+
+
+
+          </div>
+        </div>
+      </section>
+
+      {/* Posts Grid */}
+      <section className="py-12 px-6 md:px-12 lg:px-24">
+        <div className="max-w-6xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -89,165 +109,29 @@ export default function WritingPage() {
             className="mb-10"
           >
             <span className="font-mono text-xs tracking-[0.2em] uppercase text-charcoal/40 mb-2 block">
-              Long Form
+              LinkedIn Posts
             </span>
             <h2
               className="font-playfair font-black text-charcoal"
               style={{ fontSize: "clamp(1.5rem, 3vw, 2.5rem)" }}
             >
-              Articles &amp; Essays
+              Native Feeds
             </h2>
           </motion.div>
 
-          <div className="flex flex-col gap-5">
-            {blogPosts.map((post, i) => (
+          <div className="flex flex-wrap gap-8 justify-center items-start">
+            {writingMedia.map((post, i) => (
               <motion.div
                 key={post.id}
                 initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.1 }}
-                whileHover={{ x: 4 }}
-                className="group bg-white border border-surface p-7 flex flex-col md:flex-row md:items-start gap-6 relative overflow-hidden cursor-default"
+                className="shrink-0"
               >
-                {/* Left — number */}
-                <div className="font-playfair font-black text-5xl text-charcoal/5 shrink-0 leading-none select-none">
-                  {String(i + 1).padStart(2, "0")}
-                </div>
-
-                {/* Content */}
-                <div className="flex-1">
-                  <div className="flex flex-wrap gap-2 mb-3">
-                    {post.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="font-mono text-xs text-coral/70 bg-coral/6 px-2 py-0.5"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                  <h3 className="font-playfair font-bold text-xl text-charcoal mb-2 group-hover:text-coral transition-colors leading-snug">
-                    {post.title}
-                  </h3>
-                  <p className="text-charcoal/50 text-sm leading-relaxed font-light mb-4">
-                    {post.excerpt}
-                  </p>
-                  <div className="flex items-center gap-4">
-                    <span className="font-mono text-xs text-charcoal/30">{post.date}</span>
-                    <span className="font-mono text-xs text-charcoal/30">·</span>
-                    <span className="font-mono text-xs text-charcoal/30">{post.readTime}</span>
-                  </div>
-                </div>
-
-                {/* Arrow */}
-                <div className="shrink-0 self-center">
-                  <ArrowUpRight
-                    size={20}
-                    className="text-charcoal/20 group-hover:text-coral group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all"
-                  />
-                </div>
-
-                {/* Bottom line */}
-                <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-coral scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+                {/* EmbedCard requires specific typing and native handling */}
+                <EmbedCard url={post.url} type={post.type as "linkedin" | "instagram"} />
               </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* LinkedIn Posts */}
-      <section className="bg-surface py-20 px-6 md:px-12 lg:px-24">
-        <div className="max-w-6xl mx-auto">
-
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-10"
-          >
-            <div>
-              <span className="font-mono text-xs tracking-[0.2em] uppercase text-charcoal/40 mb-2 block">
-                Short Form
-              </span>
-              <h2
-                className="font-playfair font-black text-charcoal"
-                style={{ fontSize: "clamp(1.5rem, 3vw, 2.5rem)" }}
-              >
-                LinkedIn Posts
-              </h2>
-            </div>
-            <a
-              href="https://www.linkedin.com/in/mradul-awasthi/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 font-mono text-xs tracking-widest uppercase text-charcoal/40 hover:text-coral transition-colors"
-            >
-              Follow on LinkedIn
-              <ArrowUpRight size={13} />
-            </a>
-          </motion.div>
-
-          {/* Mosaic style cards grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-            {linkedinPosts.map((post, i) => (
-              <motion.a
-                key={post.id}
-                href={post.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.1 }}
-                whileHover={{ y: -4 }}
-                className="group bg-white border border-charcoal/6 p-7 flex flex-col gap-4 cursor-pointer relative overflow-hidden"
-              >
-                {/* LinkedIn Badge */}
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <div className="w-7 h-7 bg-[#0A66C2] flex items-center justify-center">
-                      <span className="text-white font-bold text-xs">in</span>
-                    </div>
-                    <span className="font-mono text-xs tracking-wider text-charcoal/40">
-                      LinkedIn Post
-                    </span>
-                  </div>
-                  <span className="font-mono text-xs text-charcoal/30">{post.date}</span>
-                </div>
-
-                {/* Title */}
-                <h3 className="font-playfair font-bold text-xl text-charcoal leading-snug group-hover:text-coral transition-colors">
-                  {post.title}
-                </h3>
-
-                {/* Excerpt */}
-                <p className="text-charcoal/55 text-sm leading-relaxed font-light flex-1">
-                  {post.excerpt}
-                </p>
-
-                {/* Footer */}
-                <div className="flex items-center justify-between pt-2 border-t border-charcoal/6">
-                  <div className="flex gap-2 flex-wrap">
-                    {post.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="font-mono text-xs text-coral/70 bg-coral/6 px-2 py-0.5"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                  <div className="flex items-center gap-1.5 font-mono text-xs text-charcoal/30 group-hover:text-coral transition-colors">
-                    <span>{post.readTime}</span>
-                    <ArrowUpRight size={13} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-                  </div>
-                </div>
-
-                {/* Hover bottom line */}
-                <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-coral scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
-              </motion.a>
             ))}
           </div>
 
