@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { ExternalLink, ArrowUpRight } from "lucide-react";
 import { experiences } from "@/data/experience";
+import Image from "next/image";
 
 export default function ExperiencePage() {
   return (
@@ -104,13 +105,24 @@ export default function ExperiencePage() {
                       {/* Header */}
                       <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-3 mb-2">
                         <div className="flex items-stretch gap-4">
-                          {/* Logo placeholder */}
-                          <div
-                            className="w-12 flex items-center justify-center text-white font-bold text-xl font-mono shrink-0"
-                            style={{ background: exp.color }}
-                          >
-                            {exp.company[0]}
-                          </div>
+                          {/* Logo placeholder or Image */}
+                          {exp.logoUrl ? (
+                            <div className="w-12 relative flex-shrink-0 bg-white shadow-sm border border-charcoal/5">
+                              <Image 
+                                src={exp.logoUrl}
+                                alt={`${exp.company} Logo`}
+                                fill
+                                className="object-contain p-1"
+                              />
+                            </div>
+                          ) : (
+                            <div
+                              className="w-12 flex items-center justify-center text-white font-bold text-xl font-mono shrink-0"
+                              style={{ background: exp.color }}
+                            >
+                              {exp.company[0]}
+                            </div>
+                          )}
                           
                           <div className="flex flex-col justify-center py-0.5">
                             <div className="flex items-center gap-3 mb-1">
