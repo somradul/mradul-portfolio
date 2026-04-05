@@ -19,6 +19,15 @@ export const experiences = [
         tags: ["ESG", "Agri Value Chain", "CSR", "Supply Chain", "Primary Research"],
         proofLabel: "View LinkedIn Post →",
         proofUrl: "https://www.linkedin.com/in/mradul-awasthi/",
+        carouselItems: [
+            { type: "instagram", url: "https://www.instagram.com/p/DFNXj_Hzmu3/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" },
+            { type: "instagram", url: "https://www.instagram.com/p/DF5F9A_TB4i/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" },
+            { type: "linkedin", url: "https://www.linkedin.com/posts/farmart-app-os_its-not-just-about-the-work-we-do-but-the-activity-7318151010298814464-nOdW" },
+            { type: "linkedin", url: "https://www.linkedin.com/posts/farmart-app-os_reimagining-bardana-from-idea-to-impact-activity-7330861855478898689-19hc" },
+            { type: "linkedin", url: "https://www.linkedin.com/posts/farmart-app-os_what-happens-when-you-give-young-bright-activity-7320309883726110720-Pizv" },
+            { type: "linkedin", url: "https://www.linkedin.com/posts/farmart-app-os_farmart-activity-7341695756954652672-Ks75" },
+            { type: "linkedin", url: "https://www.linkedin.com/posts/farmart-app-os_farmart-activity-7346074627141455872-RUgm" },
+        ]
     },
     {
         id: 2,

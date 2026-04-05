@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { ExternalLink, ArrowUpRight } from "lucide-react";
 import { experiences } from "@/data/experience";
 import Image from "next/image";
+import MediaCarousel from "@/components/MediaCarousel";
 
 export default function ExperiencePage() {
   return (
@@ -83,11 +84,7 @@ export default function ExperiencePage() {
                   transition={{ duration: 0.5, delay: i * 0.1 }}
                   className="md:pl-20 relative group"
                 >
-                  {/* Timeline dot */}
-                  <div
-                    className="absolute left-5 top-8 w-4 h-4 rounded-full border-2 border-background hidden md:block"
-                    style={{ background: exp.color }}
-                  />
+
 
                   {/* Card */}
                   <motion.div
@@ -179,6 +176,9 @@ export default function ExperiencePage() {
                         </div>
 
                       </div>
+
+                      {/* @ts-ignore - Handle optional carouselItems property natively */}
+                      {exp.carouselItems && <MediaCarousel items={exp.carouselItems} />}
                     </div>
                   </motion.div>
                 </motion.div>
