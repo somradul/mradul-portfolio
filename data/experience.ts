@@ -70,7 +70,7 @@ export const experiences = [
         company: "Littlewise",
         role: "Founder's Office",
         period: "July – August 2024",
-        website: "#",
+        website: "https://www.instagram.com/littlewise.in/",
         context: "Consumer goods startup. Founder is Ex-IB at Goldman Sachs, focused on Indian toy market.",
         color: "#8b5cf6",
         logoUrl: "/logos/littlewise.png",

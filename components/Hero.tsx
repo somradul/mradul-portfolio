@@ -164,7 +164,7 @@ export default function Hero() {
             transition={{ duration: 0.7, delay: 0.85 }}
             className="flex flex-wrap gap-2"
           >
-            {["Indian Toy Market", "Makhana Value Chain", "Agri Supply Chain", "Cross-border E-commerce", "Gig Economy", "Renewable Energy"].map((chip) => (
+            {["Indian Toy Market", "Makhana Value Chain", "Agri Supply Chain", "Cross-border E-commerce"].map((chip) => (
               <span key={chip} className="font-mono text-xs tracking-wide text-teal bg-teal/10 border border-teal/20 px-3 py-1">
                 {chip}
               </span>
@@ -173,20 +173,7 @@ export default function Hero() {
 
         </div>
 
-        {/* Scroll Indicator */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.5, duration: 0.7 }}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
-        >
-          <span className="font-mono text-xs tracking-widest uppercase text-charcoal/30">Scroll</span>
-          <motion.div
-            animate={{ y: [0, 8, 0] }}
-            transition={{ duration: 1.5, repeat: Infinity }}
-            className="w-px h-8 bg-gradient-to-b from-charcoal/30 to-transparent"
-          />
-        </motion.div>
+
 
       </div>
     </section>
