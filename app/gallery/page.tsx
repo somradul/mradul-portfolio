@@ -1,18 +1,19 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { X, ChevronLeft, ChevronRight, Play } from "lucide-react";
 import { galleryItems, GalleryItem } from "@/data/gallery";
 
-function GalleryVideoCard({ item, onClick }: { item: GalleryItem; onClick: () => void }) {
+function GalleryVideoCard({ item, onHoverStart, onHoverEnd, onClick }: { item: GalleryItem; onHoverStart: () => void; onHoverEnd: () => void; onClick: () => void }) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isHovered, setIsHovered] = useState(false);
 
   const handleMouseEnter = () => {
     setIsHovered(true);
     videoRef.current?.play().catch(() => {});
+    onHoverStart();
   };
 
   const handleMouseLeave = () => {
@@ -21,6 +22,7 @@ function GalleryVideoCard({ item, onClick }: { item: GalleryItem; onClick: () =>
     if (videoRef.current) {
       videoRef.current.currentTime = 0;
     }
+    onHoverEnd();
   };
 
   return (
@@ -44,21 +46,20 @@ function GalleryVideoCard({ item, onClick }: { item: GalleryItem; onClick: () =>
         <Play size={10} className="fill-white text-white" />
       </div>
 
-      {/* Hover Overlay with Caption */}
-      <div className="absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-5 z-10 text-white">
-        <span className="font-mono text-[9px] tracking-widest uppercase text-coral">Video</span>
-        <h3 className="font-playfair font-bold text-sm md:text-base leading-snug mt-1 line-clamp-2">
-          {item.title}
-        </h3>
+      {/* Hover Overlay */}
+      <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-center items-center p-5 z-10 text-white">
+        <span className="font-mono text-xs tracking-widest uppercase text-coral">Watch Video</span>
       </div>
     </motion.div>
   );
 }
 
-function GalleryImageCard({ item, onClick }: { item: GalleryItem; onClick: () => void }) {
+function GalleryImageCard({ item, onHoverStart, onHoverEnd, onClick }: { item: GalleryItem; onHoverStart: () => void; onHoverEnd: () => void; onClick: () => void }) {
   return (
     <motion.div
       onClick={onClick}
+      onMouseEnter={onHoverStart}
+      onMouseLeave={onHoverEnd}
       whileHover={{ y: -4 }}
       className="group bg-slate-900 border border-surface relative overflow-hidden cursor-pointer aspect-square w-full"
     >
@@ -68,12 +69,9 @@ function GalleryImageCard({ item, onClick }: { item: GalleryItem; onClick: () =>
         className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
       />
       
-      {/* Hover Overlay with Caption */}
-      <div className="absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-5 z-10 text-white">
-        <span className="font-mono text-[9px] tracking-widest uppercase text-teal">Image</span>
-        <h3 className="font-playfair font-bold text-sm md:text-base leading-snug mt-1 line-clamp-2">
-          {item.title}
-        </h3>
+      {/* Hover Overlay */}
+      <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-center items-center p-5 z-10 text-white">
+        <span className="font-mono text-xs tracking-widest uppercase text-teal">View Image</span>
       </div>
     </motion.div>
   );
@@ -81,20 +79,76 @@ function GalleryImageCard({ item, onClick }: { item: GalleryItem; onClick: () =>
 
 export default function GalleryPage() {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
+  const [shuffledItems, setShuffledItems] = useState<GalleryItem[]>([]);
+  const hoverTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
-  const activeItem = activeIndex !== null ? galleryItems[activeIndex] : null;
+  useEffect(() => {
+    const items = [...galleryItems];
+    for (let i = items.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [items[i], items[j]] = [items[j], items[i]];
+    }
+    setShuffledItems(items);
+
+    return () => {
+      if (hoverTimeoutRef.current) {
+        clearTimeout(hoverTimeoutRef.current);
+      }
+    };
+  }, []);
+
+  const itemsToDisplay = shuffledItems.length > 0 ? shuffledItems : galleryItems;
+  const activeItem = activeIndex !== null ? itemsToDisplay[activeIndex] : null;
+
+  const handleHoverStart = (index: number) => {
+    if (hoverTimeoutRef.current) {
+      clearTimeout(hoverTimeoutRef.current);
+    }
+    hoverTimeoutRef.current = setTimeout(() => {
+      setActiveIndex(index);
+    }, 1000);
+  };
+
+  const handleHoverEnd = () => {
+    if (hoverTimeoutRef.current) {
+      clearTimeout(hoverTimeoutRef.current);
+      hoverTimeoutRef.current = null;
+    }
+  };
+
+  const handleCardClick = (index: number) => {
+    if (hoverTimeoutRef.current) {
+      clearTimeout(hoverTimeoutRef.current);
+      hoverTimeoutRef.current = null;
+    }
+    setActiveIndex(index);
+  };
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setActiveIndex(null);
+      } else if (e.key === "ArrowRight" && activeIndex !== null) {
+        setActiveIndex((activeIndex + 1) % itemsToDisplay.length);
+      } else if (e.key === "ArrowLeft" && activeIndex !== null) {
+        setActiveIndex((activeIndex - 1 + itemsToDisplay.length) % itemsToDisplay.length);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [activeIndex, itemsToDisplay]);
 
   const handleNext = (e: React.MouseEvent) => {
     e.stopPropagation();
     if (activeIndex !== null) {
-      setActiveIndex((activeIndex + 1) % galleryItems.length);
+      setActiveIndex((activeIndex + 1) % itemsToDisplay.length);
     }
   };
 
   const handlePrev = (e: React.MouseEvent) => {
     e.stopPropagation();
     if (activeIndex !== null) {
-      setActiveIndex((activeIndex - 1 + galleryItems.length) % galleryItems.length);
+      setActiveIndex((activeIndex - 1 + itemsToDisplay.length) % itemsToDisplay.length);
     }
   };
 
@@ -140,13 +194,15 @@ export default function GalleryPage() {
       <section className="px-6 md:px-12 lg:px-24">
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-            {galleryItems.map((item, index) => {
+            {itemsToDisplay.map((item, index) => {
               if (item.type === "video") {
                 return (
                   <GalleryVideoCard
                     key={item.id}
                     item={item}
-                    onClick={() => setActiveIndex(index)}
+                    onHoverStart={() => handleHoverStart(index)}
+                    onHoverEnd={handleHoverEnd}
+                    onClick={() => handleCardClick(index)}
                   />
                 );
               } else {
@@ -154,7 +210,9 @@ export default function GalleryPage() {
                   <GalleryImageCard
                     key={item.id}
                     item={item}
-                    onClick={() => setActiveIndex(index)}
+                    onHoverStart={() => handleHoverStart(index)}
+                    onHoverEnd={handleHoverEnd}
+                    onClick={() => handleCardClick(index)}
                   />
                 );
               }
@@ -171,12 +229,17 @@ export default function GalleryPage() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setActiveIndex(null)}
-            className="fixed inset-0 bg-black/95 backdrop-blur-md z-50 flex flex-col justify-between p-6 cursor-zoom-out select-none"
+            onMouseMove={(e) => {
+              if (e.target === e.currentTarget) {
+                setActiveIndex(null);
+              }
+            }}
+            className="fixed inset-0 bg-black/95 backdrop-blur-md z-50 flex flex-col p-6 cursor-zoom-out select-none animate-fade-in"
           >
             {/* Header controls */}
             <div className="flex items-center justify-between w-full text-white/70 max-w-7xl mx-auto z-10 pointer-events-none">
               <span className="font-mono text-xs tracking-widest uppercase">
-                {activeIndex !== null ? activeIndex + 1 : 0} / {galleryItems.length}
+                {activeIndex !== null ? activeIndex + 1 : 0} / {itemsToDisplay.length}
               </span>
               <button 
                 onClick={() => setActiveIndex(null)} 
@@ -207,12 +270,18 @@ export default function GalleryPage() {
                 exit={{ opacity: 0, scale: 0.95 }}
                 transition={{ duration: 0.25 }}
                 onClick={(e) => e.stopPropagation()}
+                onMouseMove={(e) => {
+                  if (e.target === e.currentTarget) {
+                    setActiveIndex(null);
+                  }
+                }}
                 className="w-full h-full flex items-center justify-center p-4 cursor-default"
               >
                 {activeItem.type === "image" ? (
                   <img
                     src={activeItem.src}
                     alt={activeItem.title}
+                    onMouseLeave={() => setActiveIndex(null)}
                     className="max-w-full max-h-[75vh] md:max-h-[80vh] object-contain shadow-2xl border border-white/10"
                   />
                 ) : (
@@ -220,6 +289,7 @@ export default function GalleryPage() {
                     src={activeItem.src}
                     controls
                     autoPlay
+                    onMouseLeave={() => setActiveIndex(null)}
                     className="max-w-full max-h-[75vh] md:max-h-[80vh] object-contain shadow-2xl border border-white/10"
                   />
                 )}
@@ -234,16 +304,6 @@ export default function GalleryPage() {
                 <ChevronRight size={32} />
               </button>
 
-            </div>
-
-            {/* Footer captions */}
-            <div className="text-center text-white/80 max-w-2xl mx-auto w-full z-10 pb-4 pointer-events-none">
-              <span className="font-mono text-[10px] tracking-[0.25em] uppercase text-coral block mb-1">
-                {activeItem.type === "image" ? "Photograph" : "Video Recording"}
-              </span>
-              <h4 className="font-playfair font-bold text-lg md:text-xl text-white">
-                {activeItem.title}
-              </h4>
             </div>
 
           </motion.div>
