@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Mail, MapPin, Linkedin, Send } from "lucide-react";
+import { Mail, MapPin, Linkedin, Send, Phone } from "lucide-react";
 
 export default function ContactPage() {
     const [formData, setFormData] = useState({
@@ -177,6 +177,12 @@ export default function ContactPage() {
                                     label: "Email",
                                     value: "mradul.23209@sscbs.du.ac.in",
                                     href: "mailto:mradul.23209@sscbs.du.ac.in",
+                                },
+                                {
+                                    icon: <Phone size={18} />,
+                                    label: "Phone",
+                                    value: "+91 72350 93058",
+                                    href: "tel:+917235093058",
                                 },
 
                                 {
