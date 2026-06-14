@@ -59,7 +59,7 @@ export default function AboutPage() {
             >
               <div className="flex flex-col gap-6">
                 <p className="text-charcoal/80 text-base leading-relaxed font-normal">
-                  Hi, I'm Mradul - a final-year BMS student at Shaheed Sukhdev College of Business Studies, University of Delhi. I'm chasing a career at the intersection of <strong className="text-charcoal font-bold">consumer brands and strategy consulting</strong>, and this portfolio is my attempt to show you what that looks like in practice.
+                  Hi, I'm Mradul - a recent BMS graduate from Shaheed Sukhdev College of Business Studies, University of Delhi. I'm chasing a career at the intersection of <strong className="text-charcoal font-bold">consumer brands and strategy consulting</strong>, and this portfolio is my attempt to show you what that looks like in practice.
                 </p>
 
                 <div className="flex flex-col gap-3">
@@ -186,7 +186,7 @@ export default function AboutPage() {
                 degree: "Bachelor of Management Studies",
                 school: "Shaheed Sukhdev College of Business Studies",
                 university: "University of Delhi",
-                year: "2023 – 2026 (Pursuing)",
+                year: "2023 – 2026",
               },
               {
                 degree: "Class XII (Science) · CBSE",
