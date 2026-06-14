@@ -143,6 +143,8 @@ export default function ProjectsPage() {
                 onClick={project.hasLivePreview && project.supervisorUrl ? () => window.open(project.supervisorUrl, "_blank") : undefined}
                 className={`group bg-white border border-surface p-8 relative overflow-hidden transition-all duration-300 ${
                   project.hasLivePreview && project.supervisorUrl ? "cursor-pointer hover:shadow-lg" : "cursor-default"
+                } ${
+                  i === projects.length - 1 && projects.length % 2 !== 0 ? "md:col-span-2 md:mx-auto md:w-[calc(50%-1rem)]" : ""
                 }`}
               >
                 {/* Big number watermark */}

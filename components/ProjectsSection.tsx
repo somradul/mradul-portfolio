@@ -38,7 +38,9 @@ export default function ProjectsSection() {
                             viewport={{ once: true }}
                             transition={{ duration: 0.5, delay: i * 0.15 }}
                             whileHover={{ y: -6 }}
-                            className="group bg-white border border-surface p-8 relative overflow-hidden cursor-default"
+                            className={`group bg-white border border-surface p-8 relative overflow-hidden transition-all duration-300 cursor-default ${
+                                i === projects.length - 1 && projects.length % 2 !== 0 ? "md:col-span-2 md:mx-auto md:w-[calc(50%-0.75rem)]" : ""
+                            }`}
                         >
                             {/* Big number watermark */}
                             <span
