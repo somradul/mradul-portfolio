@@ -8,12 +8,26 @@ export type Project = {
     description: string;
     tags: string[];
     color: string;
+    hasLivePreview?: boolean;
 };
 
 export const projects: Project[] = [
     {
         id: 1,
         number: "01",
+        title: "Mosaic Product Inventor",
+        supervisor: "Live Application ↗",
+        supervisorUrl: "https://mosaic-product-inventor.vercel.app/",
+        institution: "Independent AI Project",
+        description:
+            "AI-powered product concept generator for Mosaic Wellness brands (Man Matters, Be Body Wise, Little Joys). Scrapes Reddit and Google Trends India, clusters consumer pain points via NLP, identifies market gaps, and automatically generates scored product briefs with ingredients, pricing, and positioning.",
+        tags: ["AI / NLP", "Web Scraping", "Product Strategy", "Consumer Insights"],
+        color: "#7C3AED",
+        hasLivePreview: true,
+    },
+    {
+        id: 2,
+        number: "02",
         title: "Gig Economy Analysis",
         supervisor: "Under Prof. Dr. Raj Kumar",
         supervisorUrl: "https://sscbs.du.ac.in/portfolio/raj-kumar-ma/",
@@ -24,8 +38,8 @@ export const projects: Project[] = [
         color: "#FF6B4A",
     },
     {
-        id: 2,
-        number: "02",
+        id: 3,
+        number: "03",
         title: "NTPC Fundamental Analysis",
         supervisor: "Under Prof. CA CS Madhu Totla",
         supervisorUrl: "https://sscbs.du.ac.in/portfolio/ca-madhu-totla-maheshwari/",

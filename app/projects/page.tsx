@@ -86,6 +86,8 @@ function LeadershipCard({ item, index }: { item: any; index: number }) {
 }
 
 export default function ProjectsPage() {
+  const [hoveredProjectId, setHoveredProjectId] = useState<number | null>(null);
+
   return (
     <main className="min-h-screen bg-background pt-24">
 
@@ -136,7 +138,12 @@ export default function ProjectsPage() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.15 }}
                 whileHover={{ y: -6 }}
-                className="group bg-white border border-surface p-8 relative overflow-hidden cursor-default"
+                onMouseEnter={project.hasLivePreview ? () => setHoveredProjectId(project.id) : undefined}
+                onMouseLeave={project.hasLivePreview ? () => setHoveredProjectId(null) : undefined}
+                onClick={project.hasLivePreview && project.supervisorUrl ? () => window.open(project.supervisorUrl, "_blank") : undefined}
+                className={`group bg-white border border-surface p-8 relative overflow-hidden transition-all duration-300 ${
+                  project.hasLivePreview && project.supervisorUrl ? "cursor-pointer hover:shadow-lg" : "cursor-default"
+                }`}
               >
                 {/* Big number watermark */}
                 <span
@@ -161,6 +168,7 @@ export default function ProjectsPage() {
                     rel="noopener noreferrer"
                     className="font-mono text-xs tracking-wider mb-1 hover:underline cursor-pointer block"
                     style={{ color: project.color }}
+                    onClick={(e) => e.stopPropagation()}
                   >
                     {project.supervisor}
                   </a>
@@ -181,6 +189,38 @@ export default function ProjectsPage() {
                     ))}
                   </div>
                 </div>
+
+                {/* Live Preview Overlay */}
+                <AnimatePresence>
+                  {hoveredProjectId === project.id && project.hasLivePreview && project.supervisorUrl && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 12 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: 12 }}
+                      transition={{ duration: 0.25 }}
+                      className="absolute inset-0 bg-white z-20 flex flex-col p-6 pointer-events-none"
+                    >
+                      {/* Mock Browser Header */}
+                      <div className="flex items-center gap-1.5 pb-3 mb-3 border-b border-surface">
+                        <span className="w-2.5 h-2.5 rounded-full bg-[#FF5F56]" />
+                        <span className="w-2.5 h-2.5 rounded-full bg-[#FFBD2E]" />
+                        <span className="w-2.5 h-2.5 rounded-full bg-[#27C93F]" />
+                        <span className="text-[10px] font-mono text-charcoal/40 ml-2 truncate max-w-[200px]">
+                          {project.supervisorUrl}
+                        </span>
+                      </div>
+
+                      {/* Scaled Iframe Container */}
+                      <div className="flex-1 rounded border border-surface bg-slate-50 overflow-hidden relative">
+                        <iframe
+                          src={project.supervisorUrl}
+                          className="absolute inset-0 w-[400%] h-[400%] origin-top-left scale-[0.25] border-none pointer-events-none"
+                          title={`${project.title} Preview`}
+                        />
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
 
                 {/* Bottom hover bar */}
                 <div
