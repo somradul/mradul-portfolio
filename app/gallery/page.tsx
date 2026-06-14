@@ -23,73 +23,57 @@ function GalleryVideoCard({ item, onClick }: { item: GalleryItem; onClick: () =>
     }
   };
 
-  const aspectClass = 
-    item.aspect === "portrait" 
-      ? "aspect-[3/4]" 
-      : item.aspect === "landscape" 
-      ? "aspect-[16/10]" 
-      : "aspect-square";
-
   return (
     <motion.div
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       onClick={onClick}
-      whileHover={{ y: -6 }}
-      className={`group bg-white border border-surface relative overflow-hidden cursor-pointer flex flex-col justify-between ${
-        item.span === "wide" ? "md:col-span-2" : item.span === "tall" ? "md:row-span-2" : ""
-      }`}
+      whileHover={{ y: -4 }}
+      className="group bg-slate-900 border border-surface relative overflow-hidden cursor-pointer aspect-square w-full"
     >
-      <div className={`relative w-full overflow-hidden flex-1 bg-slate-100 ${aspectClass}`}>
-        <video
-          ref={videoRef}
-          src={item.src}
-          muted
-          loop
-          playsInline
-          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-102"
-        />
-        {/* Hover overlay play indicator */}
-        <div className="absolute inset-0 bg-black/20 opacity-100 group-hover:opacity-0 transition-opacity duration-300 flex items-center justify-center pointer-events-none">
-          <div className="w-12 h-12 rounded-full border border-white/40 flex items-center justify-center bg-black/30 backdrop-blur-sm">
-            <Play size={16} className="text-white fill-white ml-0.5" />
-          </div>
-        </div>
+      <video
+        ref={videoRef}
+        src={item.src}
+        muted
+        loop
+        playsInline
+        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-102"
+      />
+      {/* Video Indicator (always visible in corner when not hovered) */}
+      <div className="absolute top-3 right-3 bg-black/45 backdrop-blur-sm p-1.5 rounded-full z-10 text-white transition-opacity duration-300 group-hover:opacity-0">
+        <Play size={10} className="fill-white text-white" />
       </div>
-      <div className="p-4 border-t border-surface bg-white relative z-10">
+
+      {/* Hover Overlay with Caption */}
+      <div className="absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-5 z-10 text-white">
         <span className="font-mono text-[9px] tracking-widest uppercase text-coral">Video</span>
-        <h3 className="font-playfair font-bold text-sm text-charcoal truncate mt-0.5">{item.title}</h3>
+        <h3 className="font-playfair font-bold text-sm md:text-base leading-snug mt-1 line-clamp-2">
+          {item.title}
+        </h3>
       </div>
     </motion.div>
   );
 }
 
 function GalleryImageCard({ item, onClick }: { item: GalleryItem; onClick: () => void }) {
-  const aspectClass = 
-    item.aspect === "portrait" 
-      ? "aspect-[3/4]" 
-      : item.aspect === "landscape" 
-      ? "aspect-[16/10]" 
-      : "aspect-square";
-
   return (
     <motion.div
       onClick={onClick}
-      whileHover={{ y: -6 }}
-      className={`group bg-white border border-surface relative overflow-hidden cursor-pointer flex flex-col justify-between ${
-        item.span === "wide" ? "md:col-span-2" : item.span === "tall" ? "md:row-span-2" : ""
-      }`}
+      whileHover={{ y: -4 }}
+      className="group bg-slate-900 border border-surface relative overflow-hidden cursor-pointer aspect-square w-full"
     >
-      <div className={`relative w-full overflow-hidden flex-1 bg-slate-100 ${aspectClass}`}>
-        <img
-          src={item.src}
-          alt={item.title}
-          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-        />
-      </div>
-      <div className="p-4 border-t border-surface bg-white relative z-10">
+      <img
+        src={item.src}
+        alt={item.title}
+        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+      />
+      
+      {/* Hover Overlay with Caption */}
+      <div className="absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-5 z-10 text-white">
         <span className="font-mono text-[9px] tracking-widest uppercase text-teal">Image</span>
-        <h3 className="font-playfair font-bold text-sm text-charcoal truncate mt-0.5">{item.title}</h3>
+        <h3 className="font-playfair font-bold text-sm md:text-base leading-snug mt-1 line-clamp-2">
+          {item.title}
+        </h3>
       </div>
     </motion.div>
   );
@@ -146,7 +130,7 @@ export default function GalleryPage() {
               <span className="text-coral italic">Life in frame.</span>
             </h1>
             <p className="text-charcoal/50 text-base font-light leading-relaxed max-w-xl">
-              An asymmetric editorial collection of campus life, competitions, field research, and strategic projects.
+              A premium, uniform square-grid feed of campus life, competitions, field research, and strategic projects.
             </p>
           </motion.div>
         </div>
@@ -155,7 +139,7 @@ export default function GalleryPage() {
       {/* Grid section */}
       <section className="px-6 md:px-12 lg:px-24">
         <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 auto-rows-max">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
             {galleryItems.map((item, index) => {
               if (item.type === "video") {
                 return (
