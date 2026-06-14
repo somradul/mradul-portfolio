@@ -6,7 +6,7 @@ export default function Footer() {
             <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
 
                 {/* Left */}
-                <div>
+                <div className="text-center md:text-left">
                     <span className="font-playfair font-bold text-lg text-white">
                         M. <span className="text-coral">Awasthi</span>
                     </span>
@@ -16,7 +16,7 @@ export default function Footer() {
                 </div>
 
                 {/* Center Links */}
-                <div className="flex gap-6">
+                <div className="flex flex-wrap justify-center gap-6">
                     {["About", "Experience", "Writing", "Contact"].map((item) => (
                         <Link
                             key={item}
@@ -29,7 +29,7 @@ export default function Footer() {
                 </div>
 
                 {/* Right */}
-                <div className="flex items-center gap-4">
+                <div className="flex items-center justify-center gap-4">
                     <a
                         href="https://www.linkedin.com/in/mradul-awasthi/"
                         target="_blank"
